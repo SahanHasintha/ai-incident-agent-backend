@@ -1,6 +1,6 @@
-interface ParsedLogEntry {
+export interface ParsedLogEntry {
   timestamp: string;        
-  level: "INFO" | "WARN" | "ERROR" | "DEBUG";
+  level: "INFO" | "WARN" | "ERROR" | "DEBUG" | "UNKNOWN";
   service: string;
   message: string;
   code?: string;
@@ -9,17 +9,22 @@ interface ParsedLogEntry {
 
 export interface IncidentState {
     rawLogs: String;
+    severity: 'low' | 'medium' | 'high';
+    recommendedFixes: String[];
     systemInfo?: String;
     parsedLogs?: ParsedLogEntry[];
     incidentType?: String;
-    severity: 'low' | 'medium' | 'high';
     rootCause?: String;
     confidenceScore?: String;
-    recommendedFixes: String[];
     incidentReport?: {
         summary: string;
         actionItems: string[];
         status?: "pending" | "reviewed" | "resolved";
         timestamp: string;
-    }
+    },
+    similarIncidents?:  Array<{
+        id: string;
+        summary: string;
+        resolution: string;
+    }>; 
 }
