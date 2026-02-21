@@ -8,14 +8,14 @@ export interface ParsedLogEntry {
 }
 
 export interface IncidentState {
-    rawLogs: String;
+    rawLogs: string;
     severity: 'low' | 'medium' | 'high';
-    recommendedFixes: String[];
-    systemInfo?: String;
+    recommendedFixes: string[];
+    systemInfo?: string;
     parsedLogs?: ParsedLogEntry[];
-    incidentType?: String;
-    rootCause?: String;
-    confidenceScore?: String;
+    incidentType?: string;
+    rootCause?: string;
+    confidenceScore?: string;
     incidentReport?: {
         summary: string;
         actionItems: string[];

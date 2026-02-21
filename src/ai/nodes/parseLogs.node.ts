@@ -14,33 +14,34 @@ function normalizeLevel(level: string): LogLevel {
   return "UNKNOWN";
 }
 
-const parseLogs = (rawLogs: String): ParsedLogEntry[] => {
-    console.log("raw Logs ", rawLogs)
-    const lines = rawLogs.split("\n").filter(Boolean);
+const parseLogs = (rawLogs: string): ParsedLogEntry[] => {
+  console.log("raw Logs ", rawLogs)
+  const lines = rawLogs.split("\n").filter(Boolean);
 
-    const logPattern = /^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+(\w+)\s+(\w+):\s+(.*)$/;
+  const logPattern = /^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+(\w+)\s+(\w+):\s+(.*)$/;
 
-    return lines.map((line) => {
-        const match = line.match(logPattern);
-        if (!match) {
-            return {
-                timestamp: "",
-                level: "UNKNOWN",
-                service: "UNKNOWN",
-                message: line
-            };
-        }
+  return lines.map((line) => {
+    const trimmedLine = line.trim(); 
+      const match = trimmedLine.match(logPattern);
+      if (!match) {
+          return {
+              timestamp: "",
+              level: "UNKNOWN",
+              service: "UNKNOWN",
+              message: line
+          };
+      }
 
-        const [, timestamp, level, service, message] = match;
-        const normalizeLevelVal: LogLevel = normalizeLevel(level)
+      const [, timestamp, level, service, message] = match;
+      const normalizeLevelVal: LogLevel = normalizeLevel(level)
 
-        return {
-            timestamp,
-            level: normalizeLevelVal,
-            service,
-            message
-        };
-    });
+      return {
+          timestamp,
+          level: normalizeLevelVal,
+          service,
+          message
+      };
+  });
 }
 
 export const parseLogsNode: GraphNode<typeof IncidentStateAnnotation> = (state: IncidentState) => {
