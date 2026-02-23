@@ -1,5 +1,5 @@
 import { IncidentState, ParsedLogEntry } from "../graph/state";
-import { geminiModel } from "../model/classifyIncident.model";
+import { geminiModel } from "../model/gemini.model";
 import { INCIDENT_CLASSIFICATION_PROMPT } from '../prompts/incidentClassification'
 
 const classifyIncident = async (parsedLogs : ParsedLogEntry[]) => {
@@ -42,12 +42,11 @@ const classifyIncident = async (parsedLogs : ParsedLogEntry[]) => {
 }
 
 export const classifyIncidentNode = async (state: IncidentState) => {
-    console.log('xxxxxxxx')
     if (state.parsedLogs){
         const res = await classifyIncident(state.parsedLogs);
         return {
             ...state,
-            incidentState: res?.incidentTypes,
+            incidentType: res?.incidentTypes,
             confidenceScore: res?.confidenceScore,
             classificationReasoning: res?.reasoning
         }

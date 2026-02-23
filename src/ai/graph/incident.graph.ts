@@ -3,6 +3,7 @@ import { IncidentState } from './state';
 import { parseLogsNode } from '../nodes/parseLogs.node';
 import { analyzeSeverityNode } from '../nodes/analyzeSecurity.node';
 import { classifyIncidentNode } from '../nodes/classifyIncident.node';
+import { rootCauseAnalyseNode } from '../nodes/rootCause.node';
 
 export const IncidentStateAnnotation = Annotation.Root({
     rawLogs: Annotation<string>(),
@@ -21,10 +22,12 @@ const graph = new StateGraph(IncidentStateAnnotation)
   .addNode("parse", parseLogsNode)
   .addNode("severi", analyzeSeverityNode)
   .addNode("classify", classifyIncidentNode)
+  .addNode("rootC", rootCauseAnalyseNode)
   .addEdge(START, "parse")
   .addEdge("parse", "severi")
   .addEdge("severi", "classify")
-  .addEdge("classify", END)
+  .addEdge("classify", "rootC")
+  .addEdge("rootC", END)
   .compile();
 
 export default graph;
