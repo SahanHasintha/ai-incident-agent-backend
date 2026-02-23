@@ -17,8 +17,6 @@ export const getIncident = async (_req: Request, _res: Response) => {
     const raw = await incidentGraph.invoke({
         rawLogs: rawData
     });
-    console.log("XXXXXXXX");
-    console.log(raw);
 
     return _res.status(200).json({
         message: 'success'
