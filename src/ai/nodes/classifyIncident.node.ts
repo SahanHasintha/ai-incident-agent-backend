@@ -12,9 +12,9 @@ const classifyIncident = async (parsedLogs : ParsedLogEntry[]) => {
     const relevantLogs = parsedLogs.filter(l => l.level == 'ERROR' || l.level == 'WARN');
     if (relevantLogs.length === 0) {
         return {
-        incidentTypes: ["UNKNOWN"],
-        primaryIncidentType: "UNKNOWN",
-        confidenceScore: 0.2
+            incidentTypes: ["UNKNOWN"],
+            primaryIncidentType: "UNKNOWN",
+            confidenceScore: 0.2
         };
     }
 
@@ -34,7 +34,7 @@ const classifyIncident = async (parsedLogs : ParsedLogEntry[]) => {
     const jsonMatch = content.match(/\{[\s\S]*\}/);
 
     if (!jsonMatch) {
-    throw new Error("No valid JSON found in AI response");
+        throw new Error("No valid JSON found in AI response");
     }
 
     const parsed = JSON.parse(jsonMatch[0]);

@@ -17,14 +17,14 @@ export type IncidentType =
   | "UNKNOWN";
   
 export interface IncidentState {
-    rawLogs: string;
-    severity: 'low' | 'medium' | 'high';
-    recommendedFixes: string[];
+    rawLogs: string; //completed
+    severity: 'low' | 'medium' | 'high'; //completed
+    recommendedFixes: string[]; 
     systemInfo?: string;
-    parsedLogs?: ParsedLogEntry[];
-    incidentType?: IncidentType[];
-    rootCause?: string;
-    confidenceScore?: string;
+    parsedLogs?: ParsedLogEntry[]; //completed
+    incidentType?: IncidentType[]; //completed
+    rootCause?: string; //completed
+    confidenceScore?: string; //completed
     classificationReasoning: string;
     incidentReport?: {
         summary: string;
