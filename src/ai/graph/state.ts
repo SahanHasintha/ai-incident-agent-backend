@@ -7,6 +7,12 @@ export interface ParsedLogEntry {
   context?: Record<string, any>;
 }
 
+export type RecommendedFix = {
+  title: string;
+  description: string;
+  priority: "low" | "medium" | "high";
+};
+
 export type IncidentType =
   | "PAYMENT_FAILURE"
   | "DATABASE_ERROR"
@@ -19,7 +25,7 @@ export type IncidentType =
 export interface IncidentState {
     rawLogs: string; //completed
     severity: 'low' | 'medium' | 'high'; //completed
-    recommendedFixes: string[]; 
+    recommendedFixes: RecommendedFix[]; 
     systemInfo?: string;
     parsedLogs?: ParsedLogEntry[]; //completed
     incidentType?: IncidentType[]; //completed
