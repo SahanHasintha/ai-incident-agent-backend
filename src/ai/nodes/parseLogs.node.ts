@@ -15,7 +15,6 @@ function normalizeLevel(level: string): LogLevel {
 }
 
 const parseLogs = (rawLogs: string): ParsedLogEntry[] => {
-  console.log("raw Logs ", rawLogs)
   const lines = rawLogs.split("\n").filter(Boolean);
 
   const logPattern = /^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+(\w+)\s+(\w+):\s+(.*)$/;

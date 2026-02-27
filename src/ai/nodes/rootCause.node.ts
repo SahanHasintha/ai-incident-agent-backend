@@ -15,8 +15,6 @@ const rootCauseAnalyse = async ({
         const formattedLogs = parsedLogs
             .map((log, index) => `Level: ${log.level}, Message: ${log.message}, Timestamp: ${log.timestamp}`)
             .join("\n");
-
-        console.log(formattedLogs);
         const finalPrompt = ROOT_CAUSE_PROMPT
             .replace("{{LOGS}}", formattedLogs)
             .replace("{{INCIDENT_TYPES}}", incidentTypes.join(", "));

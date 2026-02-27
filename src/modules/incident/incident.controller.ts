@@ -18,6 +18,8 @@ export const getIncident = async (_req: Request, _res: Response) => {
         rawLogs: rawData
     });
 
+    console.log(raw);
+
     return _res.status(200).json({
         message: 'success'
     })

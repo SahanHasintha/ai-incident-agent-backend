@@ -3,9 +3,6 @@ import { RECOMMENDED_FIX_PROMPT } from '../prompts/recommendedFixes';
 import { IncidentState, IncidentType } from './../graph/state';
 
 const recommendedFix = async (rootCause: string, incidentType: IncidentType[]) => {
-    console.log(rootCause);
-    console.log(incidentType);
-
     const incidentTypeStr = incidentType.join(",");
 
     const finalPromps = RECOMMENDED_FIX_PROMPT({rootCause: rootCause, incidentType:incidentTypeStr})
